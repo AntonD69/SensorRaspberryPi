@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sensorpi", "sensorpi\sensorpi.csproj", "{C6C1F74B-526F-41D2-A447-5E3DAB6EA464}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sensorpi", "sensorpi\sensorpi.csproj", "{C6C1F74B-526F-41D2-A447-5E3DAB6EA464}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

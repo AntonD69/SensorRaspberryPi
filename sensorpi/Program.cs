@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Threading;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Unosquare.RaspberryIO;
@@ -25,14 +26,39 @@ namespace sensorpi
 			Console.WriteLine($"Starting {_programName}.\n");
 			WriteToLogFile($"Starting {_programName}.");
 
-			GetConfigurationSettings();
 
-			CreateDatabaseAndTables();
+			try
+			{
+				var dht = new DHT(Pi.Gpio.Pin07, DHTSensorTypes.DHT11);
+				while (true)
+				{
+					try
+					{
+						var d = dht.ReadData();
+						Console.WriteLine(DateTime.UtcNow);
+						Console.WriteLine(" temp: " + d.TempCelcius);
+						Console.WriteLine(" hum: " + d.Humidity);
+					}
+					catch (DHTException)
+					{
+					}
+					Thread.Sleep(10000);
+				}
+			}
+			catch (Exception e)
+			{
+				Console.Write(e.Message + " - " + e.StackTrace);
+			}
 
-			SetupPin00AsTippingListener();
 
-			Console.WriteLine("\nPress any key to exit ...");
-			Console.ReadKey();
+			//GetConfigurationSettings();
+
+			//CreateDatabaseAndTables();
+
+			//SetupPin00AsTippingListener();
+
+			//Console.WriteLine("\nPress any key to exit ...");
+			//Console.ReadKey();
 
 			Console.WriteLine($"\nEnding {_programName}.");
 			WriteToLogFile($"Ending {_programName}.");

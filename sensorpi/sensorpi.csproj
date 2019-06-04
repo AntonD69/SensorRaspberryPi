@@ -11,6 +11,6 @@
 	<PackageReference Include="Unosquare.Raspberry.IO" Version="0.17.2" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo &quot;Anton-%TIME%&quot; &gt; &quot;$(TargetDir)sshdeploy.ready&quot;" />
+    <Exec Command="echo &quot;%TIME%&quot; &gt; &quot;$(TargetDir)sshdeploy.ready&quot;" />
   </Target>
 </Project>
